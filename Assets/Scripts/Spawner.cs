@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private Bullet _prefab;
 
     public void Spawn(Vector3 position)
     {
-        GameObject @object = Instantiate(_prefab, position, Quaternion.identity);
-        @object.transform.position = position;
+        Transform bullet = Instantiate(_prefab, position, Quaternion.identity).transform;
+        bullet.position = position;
     }
 }

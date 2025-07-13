@@ -3,13 +3,21 @@ using UnityEngine;
 public class Swing : MonoBehaviour
 {
     [SerializeField] private Rigidbody _swingRigidbody;
+    [SerializeField] private PlayerInput _input;
     [SerializeField] private float _force = 5f;
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            _swingRigidbody.AddForce(transform.right * _force, ForceMode.Force);
-        }
+        _input.SpaceButtonClicked += RockIt;
+    }
+
+    private void OnDisable()
+    {
+        _input.SpaceButtonClicked -= RockIt;
+    }
+
+    private void RockIt()
+    {
+        _swingRigidbody.AddForce(transform.right * _force, ForceMode.Force);
     }
 }
